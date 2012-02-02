@@ -20,7 +20,7 @@ module Tabulous
     active_tab = active_tab(view)
     active_tab_name = (active_tab ? active_tab.name : nil);
     html << (@@html5 ? '<nav id="tabs">' : '<div id="tabs">')
-    html << '<ul>'
+    html << '<ul class="nav">'
     for tab in main_tabs
       next if !tab.visible?(view)
       html << render_tab(:text => tab.text(view),
@@ -41,7 +41,7 @@ module Tabulous
     tab = active_tab(view)
     html = ''
     html << (@@html5 ? '<nav id="subtabs">' : '<div id="subtabs">')
-    html << '<ul>'
+    html << '<ul class="nav">'
     if tab.nil?
       subtabs = []
     else
@@ -61,8 +61,9 @@ module Tabulous
 
   def self.render_tab(options)
     html = ''
-    klass = (options[:active] ? 'active' : 'inactive')
-    klass << (options[:enabled] ? ' enabled' : ' disabled')
+#    klass = (options[:active] ? 'active' : 'inactive')
+#    klass << (options[:enabled] ? ' enabled' : ' disabled')
+    klass << (options[:enabled] ? 'enabled' : '')
     html << %Q{<li class="#{klass}">}
     if (options[:active] && !@@active_tab_clickable) || options[:enabled] == false
       html << %Q{<span class="tab">#{options[:text]}</span>}
