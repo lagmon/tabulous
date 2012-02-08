@@ -19,8 +19,8 @@ module Tabulous
     html << embed_styles
     active_tab = active_tab(view)
     active_tab_name = (active_tab ? active_tab.name : nil);
-    html << (@@html5 ? '<nav id="tabs">' : '<div id="tabs">')
-    html << '<ul class="nav">'
+    html << (@@html5 ? '<nav id="tabu_tabs">' : '<div id="tabu_tabs">')
+    html << '<ul class="tabu_nav">'
     for tab in main_tabs
       next if !tab.visible?(view)
       html << render_tab(:text => tab.text(view),
@@ -40,7 +40,7 @@ module Tabulous
     action = view.action_name.to_sym
     tab = active_tab(view)
     html = ''
-    html << (@@html5 ? '<nav id="subtabs">' : '<div id="subtabs">')
+    html << (@@html5 ? '<nav id="tabu_subtabs">' : '<div id="tabu_subtabs">')
     html << '<ul class="nav">'
     if tab.nil?
       subtabs = []
@@ -66,9 +66,9 @@ module Tabulous
 #    klass = (options[:enabled] ? 'enabled' : '')
     html << %Q{<li class="#{klass}">}
     if (options[:active] && !@@active_tab_clickable) || options[:enabled] == false
-      html << %Q{<span class="tab">#{options[:text]}</span>}
+      html << %Q{<span class="tabu_tab">#{options[:text]}</span>}
     else
-      html << %Q{<a href="#{options[:path]}" class="tab">#{options[:text]}</a>}
+      html << %Q{<a href="#{options[:path]}" class="tabu_tab">#{options[:text]}</a>}
     end
     html << '</li>'
     html
