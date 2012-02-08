@@ -20,7 +20,7 @@ module Tabulous
     active_tab = active_tab(view)
     active_tab_name = (active_tab ? active_tab.name : nil);
     html << (@@html5 ? '<nav id="tabu_tabs">' : '<div id="tabu_tabs">')
-    html << '<ul class="tabu_nav">'
+    html << '<ul class="nav">'
     for tab in main_tabs
       next if !tab.visible?(view)
       html << render_tab(:text => tab.text(view),
